@@ -1,0 +1,29 @@
+function minBoxes(n, values, weights, V, W):
+    cost = 0
+    i = 1
+    while i ≤ n:
+        // Option 1: Value-restricted box
+        totalVal = 0
+        j = i
+        while j ≤ n and totalVal + values[j] ≤ V:
+            totalVal = totalVal + values[j]
+            j = j + 1
+        countVal = j - i
+
+        // Option 2: Weight-restricted box
+        totalWeight = 0
+        k = i
+        while k ≤ n and totalWeight + weights[k] ≤ W:
+            totalWeight = totalWeight + weights[k]
+            k = k + 1
+        countWeight = k - i
+
+        // Choose the box that packs more items
+        if countVal ≥ countWeight:
+            i = i + countVal
+        else:
+            i = i + countWeight
+
+        cost = cost + 1
+
+    return cost
